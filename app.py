@@ -77,7 +77,7 @@ def main():
 
 #Vis 1 et 2##################""
 
-    # Charger les données
+# Charger les données
     france_map = gpd.read_file("departements.geojson")
     data['departement'] = data['code_departement']
 
@@ -107,12 +107,12 @@ def main():
     st.markdown("<div style='text-align:center'><h3>Choisissez votre Heatmap</h3></div>", unsafe_allow_html=True)
 
     # Widgets
-    option = st.selectbox("Option :", ["Les logements vancants en France", "Le taux de logements sociaux en France"])  
+    option = st.selectbox("Option :", ["Le taux de logements vacants en France", "Le nombre de logements sociaux en France"])  
 
-    if option == 'taux_de_logements_vacants_en':
-        p.patches('xs', 'ys', source=geosource, fill_color={'field':'taux_de_logements_vacants_en', 'transform':mapper}, line_color="white", line_width=0.5)
-    else:
+    if option == 'Le nombre de logements sociaux en France':
         p.patches('xs', 'ys', source=geosource, fill_color={'field':'parc_social_nombre_de_logements', 'transform':mapper}, line_color="white", line_width=0.5)
+    else:
+        p.patches('xs', 'ys', source=geosource, fill_color={'field':'taux_de_logements_vacants_en', 'transform':mapper}, line_color="white", line_width=0.5)
 
     st.bokeh_chart(p)
 
@@ -230,7 +230,7 @@ def main():
 
 
 
-# Assurez-vous que nous sommes au point d'entrée du programme pour exécuter l'applicatsion
+
 if __name__ == "__main__":
     main()
 
